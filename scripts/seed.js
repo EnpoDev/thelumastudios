@@ -1,4 +1,5 @@
 const { dbHelpers } = require('../lib/db');
+const bcrypt = require('bcryptjs');
 
 console.log('Starting database seeding...');
 
@@ -159,9 +160,59 @@ try {
   } else {
     console.log(`${existingTestimonials.length} testimonials already exist, skipping...`);
   }
+
+  // Check if statistics need updating (ensure we have 4 items)
+  const existingStatistics = dbHelpers.getAllStatistics();
+  
+  if (existingStatistics.length < 4) {
+    console.log('\nUpdating statistics to 4 items...');
+    
+    const db = require('../lib/db').getDatabase();
+    
+    // Clear existing statistics
+    db.prepare('DELETE FROM statistics').run();
+    
+    // Add all 4 statistics
+    const insertStat = db.prepare(`
+      INSERT INTO statistics (label_en, label_tr, value, icon, order_index) 
+      VALUES (?, ?, ?, ?, ?)
+    `);
+    
+    insertStat.run('Happy Clients', 'Mutlu Müşteri', 150, '👥', 0);
+    console.log('✓ Added statistic: Happy Clients');
+    
+    insertStat.run('Projects Completed', 'Tamamlanan Proje', 200, '🎨', 1);
+    console.log('✓ Added statistic: Projects Completed');
+    
+    insertStat.run('Years of Experience', 'Yıllık Deneyim', 5, '⭐', 2);
+    console.log('✓ Added statistic: Years of Experience');
+    
+    insertStat.run('Team Members', 'Ekip Üyesi', 15, '👨‍💻', 3);
+    console.log('✓ Added statistic: Team Members');
+  } else {
+    console.log(`\n${existingStatistics.length} statistics already exist, skipping...`);
+  }
+
+  // Check and update admin user
+  console.log('\nSetting up admin user...');
+  
+  const db = require('../lib/db').getDatabase();
+  
+  // Delete existing admin users
+  db.prepare('DELETE FROM admin_users').run();
+  
+  // Create new admin user
+  const passwordHash = bcrypt.hashSync('Enes16P1289!', 10);
+  db.prepare('INSERT INTO admin_users (username, password_hash) VALUES (?, ?)')
+    .run('enespoyraz380@gmail.com', passwordHash);
+  
+  console.log('✓ Admin user created');
+  console.log('  Email: enespoyraz380@gmail.com');
+  console.log('  Password: Enes16P1289!');
   
   console.log('\n✅ Database seeding completed successfully!');
   console.log('\nYou can now run: npm run dev');
+  console.log('\n📝 Admin Panel: http://localhost:3000/admin');
   
 } catch (error) {
   console.error('Error seeding database:', error);
