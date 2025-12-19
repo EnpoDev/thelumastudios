@@ -41,6 +41,7 @@ export default function AdminProjects() {
         }
       })
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadProjects = async () => {
@@ -269,6 +270,7 @@ export default function AdminProjects() {
                   <div className="space-y-3">
                     {formData.hero_image && (
                       <div className="relative w-full h-56 border-2 border-gray-700/50 rounded-xl overflow-hidden group">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={formData.hero_image}
                           alt="Hero preview"

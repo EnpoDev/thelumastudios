@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Check, Euro, Sparkles, Calculator } from 'lucide-react';
@@ -17,17 +17,17 @@ export default function PriceCalculator({ features, locale = 'en' }) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    calculatePrice();
-  }, [selectedFeatures]);
-
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     const addonsTotal = selectedFeatures.reduce((total, featureId) => {
       const feature = features.find(f => f.id === featureId);
       return total + (feature ? feature.base_price : 0);
     }, 0);
     setTotalPrice(BASE_PRICE + addonsTotal);
-  };
+  }, [selectedFeatures, features, BASE_PRICE]);
+
+  useEffect(() => {
+    calculatePrice();
+  }, [calculatePrice]);
 
   const toggleFeature = (featureId) => {
     setSelectedFeatures((prev) =>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Lock, Mail, LogIn, Sparkles } from 'lucide-react';
 
@@ -191,12 +192,12 @@ export default function AdminLogin() {
             </form>
 
             <div className="mt-6 text-center">
-              <a
+              <Link
                 href="/"
                 className="text-gray-400 hover:text-white text-sm transition-colors"
               >
                 ← Back to Website
-              </a>
+              </Link>
             </div>
           </div>
 

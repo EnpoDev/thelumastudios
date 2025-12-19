@@ -23,6 +23,7 @@ export default function AdminDashboard() {
         }
       })
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadStats = async () => {
@@ -130,7 +131,7 @@ export default function AdminDashboard() {
               <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent mb-2">
                 Welcome Back
               </h2>
-              <p className="text-gray-400 text-lg">Here's what's happening with your projects today.</p>
+              <p className="text-gray-400 text-lg">Here&apos;s what&apos;s happening with your projects today.</p>
             </div>
             
             {/* Stats Cards */}

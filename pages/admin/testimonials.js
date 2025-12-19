@@ -34,6 +34,7 @@ export default function AdminTestimonials() {
         }
       })
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadTestimonials = async () => {
@@ -279,6 +280,7 @@ export default function AdminTestimonials() {
                   <div className="space-y-3">
                     {formData.image_url && (
                       <div className="relative w-32 h-32 border-2 border-gray-700/50 rounded-full overflow-hidden group mx-auto">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={formData.image_url}
                           alt="Profile preview"
