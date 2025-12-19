@@ -1,3 +1,6 @@
 node_modules/
 .next/
 /_static
+database.sqlite
+.env
+.env.local

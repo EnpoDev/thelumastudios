@@ -1,0 +1,63 @@
+{
+  "common": {
+    "examineProject": "Examine Project",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "getStarted": "Get Started",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Creative Web Design Solutions",
+    "subtitle": "We create stunning digital experiences that drive results",
+    "mvpDelivery": "MVP Delivered in 1 Week"
+  },
+  "statistics": {
+    "title": "Our Achievements"
+  },
+  "priceCalculator": {
+    "title": "Get an Estimate",
+    "subtitle": "Select the features you need and get an instant price estimate",
+    "calculate": "Calculate Price",
+    "estimatedPrice": "Estimated Price",
+    "priceRange": "Price Range",
+    "from": "from",
+    "to": "to"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Don't just take our word for it"
+  },
+  "footer": {
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved"
+  },
+  "project": {
+    "backToPortfolio": "Back to Portfolio",
+    "client": "Client",
+    "timeline": "Timeline",
+    "technologies": "Technologies Used",
+    "description": "Project Description",
+    "gallery": "Project Gallery"
+  },
+  "admin": {
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "testimonials": "Testimonials",
+    "statistics": "Statistics",
+    "logout": "Logout",
+    "add": "Add New",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
+

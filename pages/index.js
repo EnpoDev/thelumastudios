@@ -1,53 +1,110 @@
-import Image from 'next/image'
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import Header from '../components/Header';
+import HeroSlider from '../components/HeroSlider';
+import Portfolio from '../components/Portfolio';
+import Services from '../components/Services';
+import TechStack from '../components/TechStack';
+import Statistics from '../components/Statistics';
+import About from '../components/About';
+import PriceCalculator from '../components/PriceCalculator';
+import Testimonials from '../components/Testimonials';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+import { detectLocale } from '../lib/i18n';
+import { dbHelpers } from '../lib/db';
 
-export default function Home() {
+export default function Home({ initialProjects, initialStatistics, initialTestimonials, initialFeatures, locale }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  // Parse JSON fields for projects
+  const projects = initialProjects.map((project) => ({
+    ...project,
+    gallery_images: project.gallery_images ? (typeof project.gallery_images === 'string' ? JSON.parse(project.gallery_images) : project.gallery_images) : [],
+    technologies: project.technologies ? (typeof project.technologies === 'string' ? JSON.parse(project.technologies) : project.technologies) : [],
+  }));
+
   return (
-    <div className="min-h-screen lg:flex text-lg">
-      {/* left side */}
-      <div className="lg:w-1/2 relative z-10 flex flex-col justify-center px-10 lg:px-20 py-20 lg:py-0 text-left">
-        <h2 className="inter text-4xl mb-3 font-bold text-gray-800">
-          Welcome to Your Next.js App{" "}
-          <span className="block text-blue-500 text-2xl font-normal">
-            Deployed to DigitalOcean
-          </span>
-        </h2>
-
-        <p className="text-gray-700 mb-6">
-          Deploy API routes, static frontend, databases, and more.
-        </p>
-
-        <div className="sm:flex">
-          <a
-            href="https://www.digitalocean.com/docs/app-platform"
-            className="block py-2 px-5 rounded shadow bg-gray-500 text-gray-100 sm:mr-2 mb-2 sm:mb-0"
-          >
-            View the Docs
-          </a>
-          <a
-            href="https://cloud.digitalocean.com/apps"
-            className="block py-2 px-5 rounded shadow bg-blue-500 text-blue-100"
-          >
-            View Your Dashboard
-          </a>
-        </div>
+    <>
+      <Head>
+        <title>Luma Studios - Creative Web Design Solutions</title>
+        <meta name="description" content="We create stunning digital experiences that drive results" />
+      </Head>
+      <Header locale={locale} />
+      <div className="min-h-screen">
+        <HeroSlider projects={projects} locale={locale} />
+        <Portfolio projects={projects} locale={locale} />
+        <Services locale={locale} />
+        <TechStack locale={locale} />
+        <Statistics statistics={initialStatistics} locale={locale} />
+        <About locale={locale} />
+        <PriceCalculator features={initialFeatures} locale={locale} />
+        <Testimonials testimonials={initialTestimonials} locale={locale} />
+        <Contact locale={locale} />
+        <Footer locale={locale} />
       </div>
-
-      {/* right side */}
-      <div className="lg:w-1/2 relative">
-        <svg
-          className="hidden lg:block text-white fill-current absolute h-full transform -translate-x-1/2 w-48 z-10"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-        >
-          <polygon points="50,0 100,0 50,100 0,100"></polygon>
-        </svg>
-
-        <Image
-          src="background.jpg"
-          alt="Ocean Image"
-          className="lg:absolute object-cover lg:inset-y-0 lg:right-0 lg:h-full lg:w-full"
-        />
-      </div>
-    </div>
+    </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const locale = detectLocale(context.req);
+  
+  try {
+    // Get featured projects
+    const projects = dbHelpers.getAllProjects(true) || [];
+    const parsedProjects = projects.map((project) => {
+      try {
+        return {
+          ...project,
+          gallery_images: project.gallery_images ? (typeof project.gallery_images === 'string' ? JSON.parse(project.gallery_images) : project.gallery_images) : [],
+          technologies: project.technologies ? (typeof project.technologies === 'string' ? JSON.parse(project.technologies) : project.technologies) : [],
+        };
+      } catch (e) {
+        return {
+          ...project,
+          gallery_images: [],
+          technologies: [],
+        };
+      }
+    });
+
+    // Get statistics
+    const statistics = dbHelpers.getAllStatistics() || [];
+
+    // Get featured testimonials
+    const testimonials = dbHelpers.getAllTestimonials(true) || [];
+
+    // Get price features
+    const features = dbHelpers.getAllPriceFeatures() || [];
+
+    return {
+      props: {
+        initialProjects: parsedProjects,
+        initialStatistics: statistics,
+        initialTestimonials: testimonials,
+        initialFeatures: features,
+        locale,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return {
+      props: {
+        initialProjects: [],
+        initialStatistics: [],
+        initialTestimonials: [],
+        initialFeatures: [],
+        locale,
+      },
+    };
+  }
 }

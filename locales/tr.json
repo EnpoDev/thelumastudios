@@ -1,0 +1,63 @@
+{
+  "common": {
+    "examineProject": "Projeyi İncele",
+    "viewAll": "Tümünü Gör",
+    "readMore": "Devamını Oku",
+    "getStarted": "Başlayalım",
+    "contact": "İletişim",
+    "language": "Dil"
+  },
+  "hero": {
+    "title": "Yaratıcı Web Tasarım Çözümleri",
+    "subtitle": "Sonuç getiren çarpıcı dijital deneyimler yaratıyoruz",
+    "mvpDelivery": "1 Haftada MVP Teslimi"
+  },
+  "statistics": {
+    "title": "Başarılarımız"
+  },
+  "priceCalculator": {
+    "title": "Fiyat Tahmini Alın",
+    "subtitle": "İhtiyacınız olan özellikleri seçin ve anında fiyat tahmini alın",
+    "calculate": "Fiyat Hesapla",
+    "estimatedPrice": "Tahmini Fiyat",
+    "priceRange": "Fiyat Aralığı",
+    "from": "başlangıç",
+    "to": "kadar"
+  },
+  "testimonials": {
+    "title": "Müşterilerimiz Ne Diyor",
+    "subtitle": "Sadece bizim sözümüze güvenmeyin"
+  },
+  "footer": {
+    "about": "Hakkımızda",
+    "services": "Hizmetler",
+    "portfolio": "Portföy",
+    "contact": "İletişim",
+    "followUs": "Bizi Takip Edin",
+    "rights": "Tüm hakları saklıdır"
+  },
+  "project": {
+    "backToPortfolio": "Portföye Dön",
+    "client": "Müşteri",
+    "timeline": "Süre",
+    "technologies": "Kullanılan Teknolojiler",
+    "description": "Proje Açıklaması",
+    "gallery": "Proje Galerisi"
+  },
+  "admin": {
+    "login": "Giriş",
+    "username": "Kullanıcı Adı",
+    "password": "Şifre",
+    "dashboard": "Kontrol Paneli",
+    "projects": "Projeler",
+    "testimonials": "Referanslar",
+    "statistics": "İstatistikler",
+    "logout": "Çıkış",
+    "add": "Yeni Ekle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal"
+  }
+}
+
