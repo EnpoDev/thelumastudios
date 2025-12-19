@@ -34,18 +34,16 @@ export default function Portfolio({ projects, locale = 'en' }) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-semibold mb-4 border border-white/20">
-            {locale === 'tr' ? 'Çalışmalarımız' : 'Our Work'}
+          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white text-sm font-semibold mb-6 border border-white/20">
+            {locale === 'tr' ? 'Başarı Hikayelerimiz' : 'Success Stories'}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-white">
-              {locale === 'tr' ? 'Portföyümüz' : 'Our Portfolio'}
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            {locale === 'tr' ? 'Örnek Çalışmalar' : 'Case Studies'}
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {locale === 'tr' 
-              ? 'Müşterilerimiz için hayata geçirdiğimiz başarılı projeler'
-              : 'Successful projects we brought to life for our clients'}
+              ? 'Uluslararası müşterilerimiz için hayata geçirdiğimiz ölçülebilir sonuçlara sahip projeler'
+              : 'Projects with measurable results delivered for our international clients'}
           </p>
         </motion.div>
 
@@ -112,13 +110,21 @@ export default function Portfolio({ projects, locale = 'en' }) {
 
                     {/* Content */}
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                      <h3 className="text-2xl font-bold text-white mb-3">
                         {locale === 'tr' ? project.title_tr : project.title_en}
                       </h3>
-                      <p className="text-gray-400 mb-4 line-clamp-2">
+                      
+                      {/* Client info if available */}
+                      {project.client && (
+                        <div className="text-sm text-gray-400 mb-3">
+                          {locale === 'tr' ? 'Müşteri: ' : 'Client: '}{project.client}
+                        </div>
+                      )}
+
+                      <p className="text-gray-300 mb-4 line-clamp-2 leading-relaxed">
                         {locale === 'tr' 
-                          ? project.description_tr?.substring(0, 100) + '...'
-                          : project.description_en?.substring(0, 100) + '...'}
+                          ? project.description_tr?.substring(0, 120) + '...'
+                          : project.description_en?.substring(0, 120) + '...'}
                       </p>
 
                       {/* Technologies */}
@@ -143,7 +149,7 @@ export default function Portfolio({ projects, locale = 'en' }) {
                       {/* View project link */}
                       <div className="flex items-center gap-2 text-white group-hover:gap-4 transition-all">
                         <span className="font-medium">
-                          {locale === 'tr' ? 'Projeyi İncele' : 'View Project'}
+                          {locale === 'tr' ? 'Örnek Çalışmayı İncele' : 'View Case Study'}
                         </span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>

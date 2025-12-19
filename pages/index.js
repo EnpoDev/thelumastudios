@@ -13,6 +13,7 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { detectLocale } from '../lib/i18n';
 import { dbHelpers } from '../lib/db';
+import { pageSEO } from '../config/seo.config';
 
 export default function Home({ initialProjects, initialStatistics, initialTestimonials, initialFeatures, locale }) {
   const [mounted, setMounted] = useState(false);
@@ -20,6 +21,9 @@ export default function Home({ initialProjects, initialStatistics, initialTestim
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // SEO configuration based on locale
+  const seoConfig = locale === 'tr' ? pageSEO.homepageTr : pageSEO.homepage;
 
   if (!mounted) {
     return null;
@@ -35,11 +39,24 @@ export default function Home({ initialProjects, initialStatistics, initialTestim
   return (
     <>
       <Head>
-        <title>Luma Studios - Creative Web Design Solutions</title>
-        <meta name="description" content="We create stunning digital experiences that drive results" />
+        <title>{seoConfig.title}</title>
+        <meta name="description" content={seoConfig.description} />
+        <link rel="canonical" href={seoConfig.canonical} />
+        <meta name="keywords" content={seoConfig.keywords} />
+        
+        {/* Open Graph */}
+        <meta property="og:url" content={seoConfig.canonical} />
+        <meta property="og:title" content={seoConfig.title} />
+        <meta property="og:description" content={seoConfig.description} />
+        <meta property="og:locale" content={locale === 'tr' ? 'tr_TR' : 'en_US'} />
+        
+        {/* Language alternates */}
+        <link rel="alternate" hrefLang="en" href="https://lumastudios.com?lang=en" />
+        <link rel="alternate" hrefLang="tr" href="https://lumastudios.com?lang=tr" />
+        <link rel="alternate" hrefLang="x-default" href="https://lumastudios.com" />
       </Head>
       <Header locale={locale} />
-      <div className="min-h-screen">
+      <main className="min-h-screen">
         <HeroSlider projects={projects} locale={locale} />
         <Portfolio projects={projects} locale={locale} />
         <Services locale={locale} />
@@ -50,13 +67,14 @@ export default function Home({ initialProjects, initialStatistics, initialTestim
         <Testimonials testimonials={initialTestimonials} locale={locale} />
         <Contact locale={locale} />
         <Footer locale={locale} />
-      </div>
+      </main>
     </>
   );
 }
 
-export async function getServerSideProps(context) {
-  const locale = detectLocale(context.req);
+// Use Static Site Generation for better SEO and performance
+export async function getStaticProps() {
+  const locale = 'en'; // Default locale for SSG
   
   try {
     // Get featured projects
@@ -94,6 +112,8 @@ export async function getServerSideProps(context) {
         initialFeatures: features,
         locale,
       },
+      // Revalidate every hour to keep content fresh
+      revalidate: 3600,
     };
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -105,6 +125,7 @@ export async function getServerSideProps(context) {
         initialFeatures: [],
         locale,
       },
+      revalidate: 3600,
     };
   }
 }

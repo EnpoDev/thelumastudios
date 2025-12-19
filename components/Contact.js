@@ -116,18 +116,16 @@ export default function Contact({ locale = 'en' }) {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-semibold mb-4 border border-white/20">
-            {locale === 'tr' ? 'Bize Ulaşın' : 'Get in Touch'}
+          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white text-sm font-semibold mb-6 border border-white/20">
+            {locale === 'tr' ? 'İletişime Geçin' : 'Get in Touch'}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-white">
-              {locale === 'tr' ? 'İletişim' : 'Contact Us'}
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            {locale === 'tr' ? 'Ücretsiz Danışma Talep Edin' : 'Schedule Free Consultation'}
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {locale === 'tr' 
-              ? 'Projeniz hakkında konuşmak için sabırsızlanıyoruz. Bize mesaj gönderin!'
-              : "We'd love to hear about your project. Send us a message!"}
+              ? 'Projeniz hakkında görüşelim. 24 saat içinde yanıt veriyoruz. Baskı yok, yükümlülük yok.'
+              : "Let's discuss your project. We respond within 24 hours. No pressure, no obligations."}
           </p>
         </motion.div>
 
@@ -141,7 +139,7 @@ export default function Contact({ locale = 'en' }) {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-[#181818]/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-white transition-all duration-300 text-center group"
+                className="bg-[#181818]/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 text-center group"
               >
                 <div className="mb-4 inline-flex p-4 bg-white/10 rounded-2xl group-hover:bg-purple-700/20 transition-colors">
                   <Icon className="w-8 h-8 text-white group-hover:text-purple-400 transition-colors" />
@@ -152,17 +150,32 @@ export default function Contact({ locale = 'en' }) {
                 {info.link ? (
                   <a
                     href={info.link}
-                    className="text-gray-400 hover:text-white transition-colors text-lg"
+                    className="text-gray-300 hover:text-white transition-colors text-lg"
                   >
                     {info.value}
                   </a>
                 ) : (
-                  <p className="text-gray-400 text-lg">{info.value}</p>
+                  <p className="text-gray-300 text-lg">{info.value}</p>
                 )}
               </motion.div>
             );
           })}
         </div>
+
+        {/* Response time badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-600/20 border border-green-500/30 rounded-full text-green-300">
+            <CheckCircle className="w-5 h-5" />
+            <span className="font-medium">
+              {locale === 'tr' ? '24 Saat İçinde Yanıt Veriyoruz' : 'We Respond Within 24 Hours'}
+            </span>
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}

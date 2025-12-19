@@ -98,18 +98,16 @@ export default function Services({ locale = 'en' }) {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-semibold mb-4 border border-white/20">
+          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white text-sm font-semibold mb-6 border border-white/20">
             {locale === 'tr' ? 'Ne Yapıyoruz' : 'What We Do'}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-white">
-              {locale === 'tr' ? 'Hizmetlerimiz' : 'Our Services'}
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            {locale === 'tr' ? 'Hizmetlerimiz' : 'Our Services'}
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {locale === 'tr' 
-              ? 'İşinizi dijital dünyada bir adım öne taşıyacak kapsamlı çözümler'
-              : 'Comprehensive solutions to take your business one step ahead in the digital world'}
+              ? 'Ölçeklenebilir, güvenilir ve iş sonuçlarına odaklanan kurumsal çözümler'
+              : 'Scalable, reliable, enterprise solutions focused on business outcomes'}
           </p>
         </motion.div>
 
@@ -140,7 +138,7 @@ export default function Services({ locale = 'en' }) {
                     </motion.div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
+                    <h3 className="text-2xl font-bold text-white mb-4">
                       {locale === 'tr' ? service.titleTr : service.titleEn}
                     </h3>
 

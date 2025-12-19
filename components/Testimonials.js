@@ -57,18 +57,16 @@ export default function Testimonials({ testimonials, locale = 'en' }) {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-semibold mb-4 border border-white/20">
-            {locale === 'tr' ? 'Referanslar' : 'Testimonials'}
+          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white text-sm font-semibold mb-6 border border-white/20">
+            {locale === 'tr' ? 'Müşteri Görüşleri' : 'Client Testimonials'}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-white">
-              {locale === 'tr' ? 'Müşterilerimiz Ne Diyor' : 'What Our Clients Say'}
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            {locale === 'tr' ? 'Müşterilerimiz Ne Diyor' : 'What Our Clients Say'}
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {locale === 'tr'
-              ? 'Memnun müşterilerimizin deneyimlerini keşfedin'
-              : 'Discover the experiences of our satisfied clients'}
+              ? 'Dünya çapındaki müşterilerimizden gerçek geri bildirimler'
+              : 'Real feedback from clients worldwide'}
           </p>
         </motion.div>
 
@@ -118,30 +116,30 @@ export default function Testimonials({ testimonials, locale = 'en' }) {
                     <div className="relative z-10">
                       <div className="flex items-center mb-6">
                         {testimonial.image_url && (testimonial.image_url.startsWith('http') || testimonial.image_url.startsWith('/')) ? (
-                          <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4 ring-4 ring-white/20">
+                          <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4 ring-2 ring-white/20">
                             <Image
                               src={testimonial.image_url}
-                              alt={testimonial.name}
+                              alt={`${testimonial.name} - ${testimonial.position || 'Client'} at ${testimonial.company || 'Company'}`}
                               fill
                               className="object-cover"
                             />
                           </div>
                         ) : (
-                          <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-black text-2xl font-bold mr-4 ring-4 ring-white/20">
+                          <div className="w-16 h-16 rounded-full bg-purple-600/20 border-2 border-purple-500/30 flex items-center justify-center text-white text-xl font-bold mr-4">
                             {testimonial.name.charAt(0).toUpperCase()}
                           </div>
                         )}
                         <div className="flex-1">
-                          <div className="font-semibold text-white text-lg">
+                          <div className="font-bold text-white text-lg">
                             {testimonial.name}
                           </div>
                           {testimonial.position && (
-                            <div className="text-sm text-gray-400">
+                            <div className="text-sm text-gray-300 font-medium">
                               {testimonial.position}
                             </div>
                           )}
                           {testimonial.company && (
-                            <div className="text-sm text-white font-medium">
+                            <div className="text-sm text-purple-400 font-medium">
                               {testimonial.company}
                             </div>
                           )}
