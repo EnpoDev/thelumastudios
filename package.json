@@ -19,7 +19,7 @@
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^11.7.0",
     "cookie": "^0.7.2",
-    "eslint-config-next": "^15.4.8",
+    "eslint-config-next": "^16.1.0",
     "formidable": "^3.5.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
