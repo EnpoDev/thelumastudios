@@ -45,15 +45,14 @@ export default function Header({ locale = 'en' }) {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/">
               <Image
                 src="/dark-logo-mini.png"
                 alt="Luma Studios"
-                width={32}
-                height={32}
-                className="w-8 h-8"
+                width={40}
+                height={40}
+                className="w-10 h-10"
               />
-              <span className="text-white font-bold text-lg">Luma Studios</span>
             </Link>
 
             {/* Desktop Navigation */}
