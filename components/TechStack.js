@@ -15,22 +15,22 @@ export default function LiveDemo({ locale = 'en' }) {
       demos: [
         {
           title: "E-Commerce Platform",
-          description: "Full-stack e-commerce with admin panel, payments, and inventory",
-          tech: "Next.js + Node.js + PostgreSQL + Stripe",
+          description: "Complete online store with admin panel, payments, and inventory management",
+          tech: "React + Node.js + Database",
           link: "#",
           status: "Live"
         },
         {
-          title: "SaaS Application",
-          description: "Multi-tenant platform with subscriptions and team management",
-          tech: "React + Express + MongoDB + Redis",
+          title: "Subscription Platform",
+          description: "Membership site with recurring payments and team management",
+          tech: "React + Node.js + Database",
           link: "#",
           status: "Live"
         },
         {
-          title: "Real-time Dashboard",
-          description: "Analytics dashboard with live data and custom reporting",
-          tech: "Next.js + GraphQL + WebSocket",
+          title: "Live Analytics Dashboard",
+          description: "Business dashboard with real-time data and custom reports",
+          tech: "React + Node.js + Database",
           link: "#",
           status: "Demo"
         }
@@ -44,22 +44,22 @@ export default function LiveDemo({ locale = 'en' }) {
       demos: [
         {
           title: "E-Ticaret Platformu",
-          description: "Admin panel, ödeme ve stok yönetimli tam e-ticaret sistemi",
-          tech: "Next.js + Node.js + PostgreSQL + Stripe",
+          description: "Admin panel, ödeme ve stok yönetimli komple online mağaza",
+          tech: "React + Node.js + Veritabanı",
           link: "#",
           status: "Canlı"
         },
         {
-          title: "SaaS Uygulaması",
-          description: "Abonelik ve takım yönetimli çoklu kiracı platform",
-          tech: "React + Express + MongoDB + Redis",
+          title: "Abonelik Platformu",
+          description: "Tekrarlayan ödemeler ve takım yönetimli üyelik sitesi",
+          tech: "React + Node.js + Veritabanı",
           link: "#",
           status: "Canlı"
         },
         {
-          title: "Gerçek Zamanlı Dashboard",
-          description: "Canlı veri ve özel raporlama içeren analitik paneli",
-          tech: "Next.js + GraphQL + WebSocket",
+          title: "Canlı Analitik Paneli",
+          description: "Gerçek zamanlı veri ve özel raporlarla iş takip paneli",
+          tech: "React + Node.js + Veritabanı",
           link: "#",
           status: "Demo"
         }

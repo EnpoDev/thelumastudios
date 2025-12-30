@@ -13,29 +13,29 @@ export default function Expertise({ locale = 'en' }) {
       items: [
         "Web Applications",
         "Admin Panels & Dashboards",
-        "REST & GraphQL APIs",
+        "Backend Systems",
         "E-Commerce Platforms",
-        "SaaS Products",
+        "Subscription-based Products",
         "Database Design",
-        "Authentication & Security",
+        "Login & Security Systems",
         "Payment Integrations",
-        "Real-time Features",
-        "Cloud Deployment"
+        "Live Updates & Notifications",
+        "Server Setup & Hosting"
       ]
     },
     tr: {
       title: "Ne Yapıyoruz",
       items: [
         "Web Uygulamaları",
-        "Admin Panel & Dashboard",
-        "REST & GraphQL API'ler",
+        "Admin Panel & Yönetim Panelleri",
+        "Altyapı Sistemleri",
         "E-Ticaret Platformları",
-        "SaaS Ürünleri",
+        "Abonelik Tabanlı Ürünler",
         "Veritabanı Tasarımı",
-        "Kimlik Doğrulama & Güvenlik",
+        "Giriş & Güvenlik Sistemleri",
         "Ödeme Entegrasyonları",
-        "Gerçek Zamanlı Özellikler",
-        "Cloud Deployment"
+        "Canlı Güncellemeler & Bildirimler",
+        "Sunucu Kurulumu & Barındırma"
       ]
     }
   };

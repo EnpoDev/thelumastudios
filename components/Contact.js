@@ -33,9 +33,9 @@ export default function Contact({ locale = 'en' }) {
       projectTypes: [
         { value: "", label: "Select..." },
         { value: "web-app", label: "Web Application" },
-        { value: "ecommerce", label: "E-Commerce Platform" },
-        { value: "saas", label: "SaaS Product" },
-        { value: "api", label: "API Development" },
+        { value: "ecommerce", label: "Online Store" },
+        { value: "subscription", label: "Subscription Platform" },
+        { value: "admin-panel", label: "Admin Panel / Dashboard" },
         { value: "other", label: "Other" }
       ],
       budgets: [
@@ -64,9 +64,9 @@ export default function Contact({ locale = 'en' }) {
       projectTypes: [
         { value: "", label: "Seçin..." },
         { value: "web-app", label: "Web Uygulaması" },
-        { value: "ecommerce", label: "E-Ticaret Platformu" },
-        { value: "saas", label: "SaaS Ürünü" },
-        { value: "api", label: "API Geliştirme" },
+        { value: "ecommerce", label: "Online Mağaza" },
+        { value: "subscription", label: "Abonelik Platformu" },
+        { value: "admin-panel", label: "Admin Panel / Yönetim Paneli" },
         { value: "other", label: "Diğer" }
       ],
       budgets: [

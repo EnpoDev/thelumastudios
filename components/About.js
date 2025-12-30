@@ -16,13 +16,13 @@ export default function Packages({ locale = 'en' }) {
         {
           name: "Starter",
           price: "From $2,500",
-          description: "For MVPs and landing pages",
+          description: "For new projects and websites",
           features: [
             { text: "Up to 5 Pages", included: true },
-            { text: "Responsive Design", included: true },
-            { text: "Basic Backend API", included: true },
+            { text: "Mobile-Friendly Design", included: true },
+            { text: "Basic Backend System", included: true },
             { text: "Contact Form", included: true },
-            { text: "SEO Optimization", included: true },
+            { text: "Google-Friendly Setup", included: true },
             { text: "Admin Panel", included: false },
             { text: "Payment Integration", included: false },
             { text: "Custom Features", included: false }
@@ -37,12 +37,12 @@ export default function Packages({ locale = 'en' }) {
           features: [
             { text: "Full Web Application", included: true },
             { text: "Admin Panel", included: true },
-            { text: "User Authentication", included: true },
+            { text: "User Login System", included: true },
             { text: "Database Design", included: true },
-            { text: "REST API", included: true },
+            { text: "Backend System", included: true },
             { text: "Payment Integration", included: true },
             { text: "Email Notifications", included: true },
-            { text: "Real-time Features", included: false }
+            { text: "Live Updates", included: false }
           ],
           delivery: "3-4 weeks",
           popular: true
@@ -53,12 +53,12 @@ export default function Packages({ locale = 'en' }) {
           description: "For complex platforms",
           features: [
             { text: "Everything in Business", included: true },
-            { text: "Microservices Architecture", included: true },
-            { text: "Real-time Features", included: true },
+            { text: "Scalable Architecture", included: true },
+            { text: "Live Updates", included: true },
             { text: "Advanced Security", included: true },
-            { text: "Multi-tenant System", included: true },
-            { text: "CI/CD Pipeline", included: true },
-            { text: "Load Balancing", included: true },
+            { text: "Multi-Company Support", included: true },
+            { text: "Automated Deployment", included: true },
+            { text: "High-Traffic Ready", included: true },
             { text: "24/7 Monitoring", included: true }
           ],
           delivery: "To be discussed",
@@ -75,13 +75,13 @@ export default function Packages({ locale = 'en' }) {
         {
           name: "Starter",
           price: "₺75.000'den",
-          description: "MVP ve tanıtım siteleri için",
+          description: "Yeni projeler ve web siteleri için",
           features: [
             { text: "5 Sayfaya Kadar", included: true },
-            { text: "Responsive Tasarım", included: true },
-            { text: "Temel Backend API", included: true },
+            { text: "Mobil Uyumlu Tasarım", included: true },
+            { text: "Temel Altyapı Sistemi", included: true },
             { text: "İletişim Formu", included: true },
-            { text: "SEO Optimizasyonu", included: true },
+            { text: "Google Uyumlu Yapı", included: true },
             { text: "Admin Panel", included: false },
             { text: "Ödeme Entegrasyonu", included: false },
             { text: "Özel Özellikler", included: false }
@@ -96,12 +96,12 @@ export default function Packages({ locale = 'en' }) {
           features: [
             { text: "Tam Web Uygulaması", included: true },
             { text: "Admin Panel", included: true },
-            { text: "Kullanıcı Kimlik Doğrulama", included: true },
+            { text: "Kullanıcı Giriş Sistemi", included: true },
             { text: "Veritabanı Tasarımı", included: true },
-            { text: "REST API", included: true },
+            { text: "Altyapı Sistemi", included: true },
             { text: "Ödeme Entegrasyonu", included: true },
             { text: "E-posta Bildirimleri", included: true },
-            { text: "Gerçek Zamanlı Özellikler", included: false }
+            { text: "Canlı Güncellemeler", included: false }
           ],
           delivery: "3-4 hafta",
           popular: true
@@ -112,12 +112,12 @@ export default function Packages({ locale = 'en' }) {
           description: "Karmaşık platformlar için",
           features: [
             { text: "Business'taki Her Şey", included: true },
-            { text: "Microservices Mimarisi", included: true },
-            { text: "Gerçek Zamanlı Özellikler", included: true },
+            { text: "Ölçeklenebilir Mimari", included: true },
+            { text: "Canlı Güncellemeler", included: true },
             { text: "Gelişmiş Güvenlik", included: true },
-            { text: "Çoklu Kiracı Sistemi", included: true },
-            { text: "CI/CD Pipeline", included: true },
-            { text: "Load Balancing", included: true },
+            { text: "Çoklu Şirket Desteği", included: true },
+            { text: "Otomatik Yayınlama", included: true },
+            { text: "Yüksek Trafik Desteği", included: true },
             { text: "7/24 İzleme", included: true }
           ],
           delivery: "Görüşülecek",
