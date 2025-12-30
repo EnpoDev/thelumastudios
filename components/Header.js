@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -44,8 +45,15 @@ export default function Header({ locale = 'en' }) {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="text-white font-bold text-lg">
-              Luma Studios
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/dark-logo-mini.png"
+                alt="Luma Studios"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
+              <span className="text-white font-bold text-lg">Luma Studios</span>
             </Link>
 
             {/* Desktop Navigation */}
