@@ -49,9 +49,9 @@ export default function Header({ locale = 'en' }) {
               <Image
                 src="/dark-logo-mini.png"
                 alt="Luma Studios"
-                width={40}
+                width={120}
                 height={40}
-                className="w-10 h-10"
+                className="h-10 w-auto"
               />
             </Link>
 
