@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Shield } from 'lucide-react';
 
 export default function Contact({ locale = 'en' }) {
   const [formData, setFormData] = useState({
@@ -12,6 +12,7 @@ export default function Contact({ locale = 'en' }) {
     budget: '',
     description: '',
   });
+  const [consentGiven, setConsentGiven] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -47,6 +48,11 @@ export default function Contact({ locale = 'en' }) {
         { value: "10000-25000", label: "$10,000 - $25,000" },
         { value: "25000+", label: "$25,000+" }
       ],
+      consent: {
+        label: "I agree to the processing of my personal data",
+        description: "Your data will be processed in accordance with our Privacy Policy and retained for 365 days.",
+        required: "You must agree to the privacy policy to submit this form."
+      },
       submit: "Send Request",
       sending: "Sending...",
       success: "Request received. We'll respond within 24 hours.",
@@ -54,36 +60,41 @@ export default function Contact({ locale = 'en' }) {
       note: "We typically respond within 24 hours on business days."
     },
     tr: {
-      title: "Proje Başlat",
-      subtitle: "Sadece ciddi talepler. Bütçe alanı zorunludur.",
+      title: "Proje Baslat",
+      subtitle: "Sadece ciddi talepler. Butce alani zorunludur.",
       fields: {
-        name: "İsim",
+        name: "Isim",
         email: "E-posta",
         phone: "Telefon",
-        projectType: "Proje Türü",
-        budget: "Bütçe Aralığı",
-        description: "Kısa Açıklama"
+        projectType: "Proje Turu",
+        budget: "Butce Araligi",
+        description: "Kisa Aciklama"
       },
       projectTypes: [
-        { value: "", label: "Seçin..." },
-        { value: "web-app", label: "Web Uygulaması" },
-        { value: "ecommerce", label: "Online Mağaza" },
+        { value: "", label: "Secin..." },
+        { value: "web-app", label: "Web Uygulamasi" },
+        { value: "ecommerce", label: "Online Magaza" },
         { value: "subscription", label: "Abonelik Platformu" },
-        { value: "admin-panel", label: "Admin Panel / Yönetim Paneli" },
-        { value: "other", label: "Diğer" }
+        { value: "admin-panel", label: "Admin Panel / Yonetim Paneli" },
+        { value: "other", label: "Diger" }
       ],
       budgets: [
-        { value: "", label: "Bütçenizi seçin..." },
-        { value: "75000-150000", label: "₺75.000 - ₺150.000" },
-        { value: "150000-300000", label: "₺150.000 - ₺300.000" },
-        { value: "300000-750000", label: "₺300.000 - ₺750.000" },
-        { value: "750000+", label: "₺750.000+" }
+        { value: "", label: "Butcenizi secin..." },
+        { value: "75000-150000", label: "75.000 TL - 150.000 TL" },
+        { value: "150000-300000", label: "150.000 TL - 300.000 TL" },
+        { value: "300000-750000", label: "300.000 TL - 750.000 TL" },
+        { value: "750000+", label: "750.000 TL+" }
       ],
-      submit: "Talep Gönder",
-      sending: "Gönderiliyor...",
-      success: "Talep alındı. 24 saat içinde dönüş yapacağız.",
-      error: "Bir sorun oluştu. Lütfen tekrar deneyin.",
-      note: "İş günlerinde genellikle 24 saat içinde yanıt veriyoruz."
+      consent: {
+        label: "Kisisel verilerimin islenmesini kabul ediyorum",
+        description: "Verileriniz Gizlilik Politikamiz dogrultusunda islenir ve 365 gun saklanir.",
+        required: "Formu gondermek icin gizlilik politikasini kabul etmelisiniz."
+      },
+      submit: "Talep Gonder",
+      sending: "Gonderiliyor...",
+      success: "Talep alindi. 24 saat icinde donus yapacagiz.",
+      error: "Bir sorun olustu. Lutfen tekrar deneyin.",
+      note: "Is gunlerinde genellikle 24 saat icinde yanit veriyoruz."
     }
   };
 
@@ -98,6 +109,13 @@ export default function Contact({ locale = 'en' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate consent
+    if (!consentGiven) {
+      setStatus({ type: 'error', message: text.consent.required });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
@@ -107,7 +125,13 @@ export default function Contact({ locale = 'en' }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          consent: {
+            contact_form: true,
+            timestamp: new Date().toISOString(),
+          },
+        }),
       });
 
       const data = await response.json();
@@ -122,8 +146,9 @@ export default function Contact({ locale = 'en' }) {
           budget: '',
           description: '',
         });
+        setConsentGiven(false);
       } else {
-        setStatus({ type: 'error', message: text.error });
+        setStatus({ type: 'error', message: data.message || text.error });
       }
     } catch (error) {
       setStatus({ type: 'error', message: text.error });
@@ -253,6 +278,40 @@ export default function Contact({ locale = 'en' }) {
               />
             </div>
 
+            {/* KVKK/GDPR Consent Checkbox */}
+            <div className="border border-white/10 p-4 rounded">
+              <label className="flex items-start gap-3 cursor-pointer group">
+                <div className="relative flex-shrink-0 mt-0.5">
+                  <input
+                    type="checkbox"
+                    checked={consentGiven}
+                    onChange={(e) => setConsentGiven(e.target.checked)}
+                    className="sr-only"
+                  />
+                  <div className={`w-5 h-5 border-2 rounded transition-all ${
+                    consentGiven
+                      ? 'bg-white border-white'
+                      : 'border-white/30 group-hover:border-white/50'
+                  }`}>
+                    {consentGiven && (
+                      <svg className="w-full h-full text-black p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 text-white text-sm font-medium">
+                    <Shield className="w-4 h-4 text-gray-400" />
+                    {text.consent.label} *
+                  </div>
+                  <p className="text-gray-500 text-xs mt-1">
+                    {text.consent.description}
+                  </p>
+                </div>
+              </label>
+            </div>
+
             {/* Status message */}
             {status.message && (
               <div className={`flex items-center gap-3 p-4 border ${
@@ -272,7 +331,7 @@ export default function Contact({ locale = 'en' }) {
             {/* Submit */}
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !consentGiven}
               className="w-full py-4 bg-white text-black font-medium hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
             >
               {isSubmitting ? (
