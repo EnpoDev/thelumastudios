@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import { BarChart3, FolderKanban, MessageSquare, TrendingUp, LogOut, Plus } from 'lucide-react';
+import { BarChart3, FolderKanban, MessageSquare, TrendingUp, LogOut, Plus, Mail } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({ projects: 0, testimonials: 0 });
+  const [stats, setStats] = useState({ projects: 0, testimonials: 0, contacts: 0 });
   const router = useRouter();
 
   useEffect(() => {
@@ -28,17 +28,20 @@ export default function AdminDashboard() {
 
   const loadStats = async () => {
     try {
-      const [projectsRes, testimonialsRes] = await Promise.all([
+      const [projectsRes, testimonialsRes, contactsRes] = await Promise.all([
         fetch('/api/projects'),
         fetch('/api/testimonials'),
+        fetch('/api/contacts'),
       ]);
-      
+
       const projects = await projectsRes.json();
       const testimonials = await testimonialsRes.json();
-      
+      const contacts = await contactsRes.json();
+
       setStats({
         projects: projects.length,
         testimonials: testimonials.length,
+        contacts: Array.isArray(contacts) ? contacts.length : 0,
       });
     } catch (error) {
       console.error('Error loading stats:', error);
@@ -92,6 +95,12 @@ export default function AdminDashboard() {
                     Dashboard
                   </Link>
                   <Link
+                    href="/admin/contacts"
+                    className="text-gray-300 hover:bg-gray-800/50 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
+                  >
+                    Contacts
+                  </Link>
+                  <Link
                     href="/admin/projects"
                     className="text-gray-300 hover:bg-gray-800/50 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
                   >
@@ -135,7 +144,7 @@ export default function AdminDashboard() {
             </div>
             
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {/* Projects Card */}
               <div className="group relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -157,6 +166,33 @@ export default function AdminDashboard() {
                       className="flex items-center justify-between text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors group"
                     >
                       <span>Manage projects</span>
+                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contacts Card */}
+              <div className="group relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 w-14 h-14 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                      <Mail className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-gray-400 mb-1">Contact Requests</p>
+                      <p className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+                        {stats.contacts}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t border-gray-700/50">
+                    <Link
+                      href="/admin/contacts"
+                      className="flex items-center justify-between text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors group"
+                    >
+                      <span>View requests</span>
                       <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                     </Link>
                   </div>
