@@ -183,6 +183,10 @@ export default function AdminContacts() {
                       <p className="text-white">{selectedContact.email}</p>
                     </div>
                     <div>
+                      <label className="text-gray-500 text-xs uppercase">Phone</label>
+                      <p className="text-white">{selectedContact.phone || '-'}</p>
+                    </div>
+                    <div>
                       <label className="text-gray-500 text-xs uppercase">Project Type & Budget</label>
                       <p className="text-white">{selectedContact.subject}</p>
                     </div>

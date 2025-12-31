@@ -3,10 +3,10 @@ import { dbHelpers } from '../../lib/db';
 export default function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { name, email, projectType, budget, description } = req.body;
+      const { name, email, phone, projectType, budget, description } = req.body;
 
       // Validate required fields
-      if (!name || !email || !projectType || !budget) {
+      if (!name || !email || !phone || !projectType || !budget) {
         return res.status(400).json({
           success: false,
           message: 'Please fill in all required fields'
@@ -26,7 +26,7 @@ export default function handler(req, res) {
       const contactId = dbHelpers.createContact({
         name,
         email,
-        phone: null,
+        phone,
         subject: `${projectType} - Budget: ${budget}`,
         message: description || 'No description provided',
         created_at: new Date().toISOString(),

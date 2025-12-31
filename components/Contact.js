@@ -7,6 +7,7 @@ export default function Contact({ locale = 'en' }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     projectType: '',
     budget: '',
     description: '',
@@ -26,6 +27,7 @@ export default function Contact({ locale = 'en' }) {
       fields: {
         name: "Name",
         email: "Email",
+        phone: "Phone",
         projectType: "Project Type",
         budget: "Budget Range",
         description: "Brief Description"
@@ -57,6 +59,7 @@ export default function Contact({ locale = 'en' }) {
       fields: {
         name: "İsim",
         email: "E-posta",
+        phone: "Telefon",
         projectType: "Proje Türü",
         budget: "Bütçe Aralığı",
         description: "Kısa Açıklama"
@@ -114,6 +117,7 @@ export default function Contact({ locale = 'en' }) {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           projectType: '',
           budget: '',
           description: '',
@@ -152,8 +156,8 @@ export default function Contact({ locale = 'en' }) {
           className="max-w-xl mx-auto"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name & Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Name & Email & Phone */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-gray-400 text-sm mb-2">
                   {text.fields.name} *
@@ -175,6 +179,19 @@ export default function Contact({ locale = 'en' }) {
                   type="email"
                   name="email"
                   value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-400 text-sm mb-2">
+                  {text.fields.phone} *
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all"
