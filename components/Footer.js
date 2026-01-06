@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Mail } from 'lucide-react';
+import { Mail, MapPin, Phone, User } from 'lucide-react';
 
 export default function Footer({ locale = 'en' }) {
   const router = useRouter();
@@ -11,18 +11,28 @@ export default function Footer({ locale = 'en' }) {
     window.location.reload();
   };
 
+  // Legal contact info required by Turkish Law 5651
+  const legalContact = {
+    name: "Enes POYRAZ",
+    address: "Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa",
+    email: "enespoyraz380@gmail.com",
+    phone: "0546 780 59 72"
+  };
+
   const content = {
     en: {
       tagline: "Fullstack Web Development Studio",
       email: "hello@lumastudios.com",
       rights: "All rights reserved",
-      sections: ["Expertise", "Demos", "Packages", "Rules", "Contact"]
+      sections: ["Expertise", "Demos", "Packages", "Rules", "Contact"],
+      contactTitle: "Contact Information"
     },
     tr: {
       tagline: "Fullstack Web Geliştirme Stüdyosu",
       email: "hello@lumastudios.com",
       rights: "Tüm hakları saklıdır",
-      sections: ["Uzmanlık", "Demolar", "Paketler", "Kurallar", "İletişim"]
+      sections: ["Uzmanlık", "Demolar", "Paketler", "Kurallar", "İletişim"],
+      contactTitle: "İletişim Bilgileri"
     }
   };
 
@@ -52,6 +62,36 @@ export default function Footer({ locale = 'en' }) {
               </a>
             ))}
           </nav>
+        </div>
+
+        {/* Legal Contact Information - Required by Turkish Law 5651 */}
+        <div className="border-t border-white/5 pt-8 mb-8">
+          <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
+            <User className="w-4 h-4" />
+            {text.contactTitle}
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+            <div className="flex items-start gap-2">
+              <User className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <span className="text-gray-400">{legalContact.name}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <span className="text-gray-400">{legalContact.address}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <Mail className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <a href={`mailto:${legalContact.email}`} className="text-gray-400 hover:text-white transition-colors">
+                {legalContact.email}
+              </a>
+            </div>
+            <div className="flex items-start gap-2">
+              <Phone className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <a href={`tel:${legalContact.phone.replace(/\s/g, '')}`} className="text-gray-400 hover:text-white transition-colors">
+                {legalContact.phone}
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Divider */}

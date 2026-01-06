@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, CheckCircle, AlertCircle, Shield } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Shield, User, MapPin, Mail, Phone } from 'lucide-react';
 
 export default function Contact({ locale = 'en' }) {
   const [formData, setFormData] = useState({
@@ -20,6 +20,14 @@ export default function Contact({ locale = 'en' }) {
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  // Legal contact info required by Turkish Law 5651
+  const legalContact = {
+    name: "Enes POYRAZ",
+    address: "Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa",
+    email: "enespoyraz380@gmail.com",
+    phone: "0546 780 59 72"
+  };
 
   const content = {
     en: {
@@ -57,7 +65,8 @@ export default function Contact({ locale = 'en' }) {
       sending: "Sending...",
       success: "Request received. We'll respond within 24 hours.",
       error: "Something went wrong. Please try again.",
-      note: "We typically respond within 24 hours on business days."
+      note: "We typically respond within 24 hours on business days.",
+      contactInfoTitle: "Contact Information"
     },
     tr: {
       title: "Proje Baslat",
@@ -94,7 +103,8 @@ export default function Contact({ locale = 'en' }) {
       sending: "Gonderiliyor...",
       success: "Talep alindi. 24 saat icinde donus yapacagiz.",
       error: "Bir sorun olustu. Lutfen tekrar deneyin.",
-      note: "Is gunlerinde genellikle 24 saat icinde yanit veriyoruz."
+      note: "Is gunlerinde genellikle 24 saat icinde yanit veriyoruz.",
+      contactInfoTitle: "Iletisim Bilgileri"
     }
   };
 
@@ -172,6 +182,43 @@ export default function Contact({ locale = 'en' }) {
           <p className="text-gray-500 text-lg">
             {text.subtitle}
           </p>
+        </motion.div>
+
+        {/* Contact Information Card - Required by Turkish Law 5651 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-xl mx-auto mb-12"
+        >
+          <div className="border border-white/10 p-6">
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              <User className="w-5 h-5" />
+              {text.contactInfoTitle}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="flex items-start gap-3">
+                <User className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-400">{legalContact.name}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-400">{legalContact.address}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <a href={`mailto:${legalContact.email}`} className="text-gray-400 hover:text-white transition-colors">
+                  {legalContact.email}
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <a href={`tel:${legalContact.phone.replace(/\s/g, '')}`} className="text-gray-400 hover:text-white transition-colors">
+                  {legalContact.phone}
+                </a>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
