@@ -57,7 +57,7 @@ export default function TeslimatVeIade() {
         },
         {
           title: "10. İletişim",
-          content: "Teslimat ve iade şartları hakkında sorularınız için bizimle iletişime geçebilirsiniz:\n\nEnes POYRAZ (Luma Studios)\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nE-posta: enespoyraz380@gmail.com\nTelefon: 0546 780 59 72\n\nİletişim Saatleri: Hafta içi 10:00 - 18:00 (GMT+3)"
+          content: "Teslimat ve iade şartları hakkında sorularınız için bizimle iletişime geçebilirsiniz:\n\nEnes POYRAZ (Luma Studios)\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nE-posta: enespoyraz380@gmail.com\nTelefon: 0546 780 59 72\nVKN: 7330923351\nKEP: enes.poyraz@hs01.kep.tr\n\nGVK Mükerrer 20/B kapsamında vergiden muaftır.\n\nİletişim Saatleri: Hafta içi 10:00 - 18:00 (GMT+3)"
         }
       ]
     },
@@ -104,7 +104,7 @@ export default function TeslimatVeIade() {
         },
         {
           title: "10. Contact",
-          content: "For questions about delivery and return terms, you can contact us:\n\nEnes POYRAZ (Luma Studios)\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nEmail: enespoyraz380@gmail.com\nPhone: +90 546 780 59 72\n\nContact Hours: Weekdays 10:00 - 18:00 (GMT+3)"
+          content: "For questions about delivery and return terms, you can contact us:\n\nEnes POYRAZ (Luma Studios)\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nEmail: enespoyraz380@gmail.com\nPhone: +90 546 780 59 72\nTax ID (VKN): 7330923351\nRegistered Email (KEP): enes.poyraz@hs01.kep.tr\n\nTax exempt under Income Tax Law Article 20/B.\n\nContact Hours: Weekdays 10:00 - 18:00 (GMT+3)"
         }
       ]
     }

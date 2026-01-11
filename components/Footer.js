@@ -18,7 +18,13 @@ export default function Footer({ locale = 'en' }) {
     name: "Enes POYRAZ",
     address: "Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa",
     email: "enespoyraz380@gmail.com",
-    phone: "0546 780 59 72"
+    phone: "0546 780 59 72",
+    vkn: "7330923351",
+    kep: "enes.poyraz@hs01.kep.tr",
+    taxExemption: {
+      tr: "GVK Mükerrer 20/B kapsamında vergiden muaftır",
+      en: "Tax exempt under Income Tax Law Article 20/B"
+    }
   };
 
   const content = {
@@ -82,7 +88,7 @@ export default function Footer({ locale = 'en' }) {
             <User className="w-4 h-4" />
             {text.contactTitle}
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
             <div className="flex items-start gap-2">
               <User className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
               <span className="text-gray-400">{legalContact.name}</span>
@@ -103,7 +109,20 @@ export default function Footer({ locale = 'en' }) {
                 {legalContact.phone}
               </a>
             </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gray-500 mt-0.5 flex-shrink-0 text-xs font-medium">VKN</span>
+              <span className="text-gray-400">{legalContact.vkn}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gray-500 mt-0.5 flex-shrink-0 text-xs font-medium">KEP</span>
+              <a href={`mailto:${legalContact.kep}`} className="text-gray-400 hover:text-white transition-colors">
+                {legalContact.kep}
+              </a>
+            </div>
           </div>
+          <p className="text-gray-500 text-xs mt-4 italic">
+            {legalContact.taxExemption[locale]}
+          </p>
         </div>
 
         {/* Legal Links */}

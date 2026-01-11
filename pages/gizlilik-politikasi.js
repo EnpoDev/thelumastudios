@@ -25,7 +25,7 @@ export default function GizlilikPolitikasi() {
         },
         {
           title: "2. Veri Sorumlusu",
-          content: "Kişisel verileriniz bakımından veri sorumlusu:\n\nEnes POYRAZ\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nE-posta: enespoyraz380@gmail.com\nTelefon: 0546 780 59 72"
+          content: "Kişisel verileriniz bakımından veri sorumlusu:\n\nEnes POYRAZ\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nE-posta: enespoyraz380@gmail.com\nTelefon: 0546 780 59 72\nVKN: 7330923351\nKEP: enes.poyraz@hs01.kep.tr\n\nGVK Mükerrer 20/B kapsamında vergiden muaftır."
         },
         {
           title: "3. Toplanan Kişisel Veriler",
@@ -76,7 +76,7 @@ export default function GizlilikPolitikasi() {
         },
         {
           title: "2. Data Controller",
-          content: "The data controller for your personal data:\n\nEnes POYRAZ\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nEmail: enespoyraz380@gmail.com\nPhone: +90 546 780 59 72"
+          content: "The data controller for your personal data:\n\nEnes POYRAZ\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nEmail: enespoyraz380@gmail.com\nPhone: +90 546 780 59 72\nTax ID (VKN): 7330923351\nRegistered Email (KEP): enes.poyraz@hs01.kep.tr\n\nTax exempt under Income Tax Law Article 20/B."
         },
         {
           title: "3. Personal Data Collected",

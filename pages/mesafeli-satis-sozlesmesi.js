@@ -21,7 +21,7 @@ export default function MesafeliSatisSozlesmesi() {
       sections: [
         {
           title: "Madde 1 - Taraflar",
-          content: "1.1. SATICI:\nÜnvan: Enes POYRAZ (Luma Studios)\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nTelefon: 0546 780 59 72\nE-posta: enespoyraz380@gmail.com\n\n1.2. ALICI:\nSipariş sürecinde belirtilen ad, adres ve iletişim bilgilerine sahip gerçek veya tüzel kişi."
+          content: "1.1. SATICI:\nÜnvan: Enes POYRAZ (Luma Studios)\nAdres: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa\nTelefon: 0546 780 59 72\nE-posta: enespoyraz380@gmail.com\nVKN: 7330923351\nKEP: enes.poyraz@hs01.kep.tr\n\nGVK Mükerrer 20/B kapsamında vergiden muaftır.\n\n1.2. ALICI:\nSipariş sürecinde belirtilen ad, adres ve iletişim bilgilerine sahip gerçek veya tüzel kişi."
         },
         {
           title: "Madde 2 - Sözleşmenin Konusu",
@@ -72,7 +72,7 @@ export default function MesafeliSatisSozlesmesi() {
       sections: [
         {
           title: "Article 1 - Parties",
-          content: "1.1. SELLER:\nName: Enes POYRAZ (Luma Studios)\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nPhone: +90 546 780 59 72\nEmail: enespoyraz380@gmail.com\n\n1.2. BUYER:\nNatural or legal person with the name, address, and contact information specified during the order process."
+          content: "1.1. SELLER:\nName: Enes POYRAZ (Luma Studios)\nAddress: Cumhuriyet Mah. Başak Sok. Yükselen Park Nilüfer Sitesi H Blok Kat 7 Daire 18 Nilüfer/Bursa, Turkey\nPhone: +90 546 780 59 72\nEmail: enespoyraz380@gmail.com\nTax ID (VKN): 7330923351\nRegistered Email (KEP): enes.poyraz@hs01.kep.tr\n\nTax exempt under Income Tax Law Article 20/B.\n\n1.2. BUYER:\nNatural or legal person with the name, address, and contact information specified during the order process."
         },
         {
           title: "Article 2 - Subject of the Agreement",
