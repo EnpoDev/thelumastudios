@@ -7,6 +7,7 @@ import Packages from '../components/About';
 import Rules from '../components/Rules';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import WhatsAppButton from '../components/WhatsAppButton';
 import { detectLocale } from '../lib/i18n';
 import { pageSEO } from '../config/seo.config';
 
@@ -71,6 +72,7 @@ export default function Home({ locale: initialLocale }) {
         <Contact locale={locale} />
       </main>
       <Footer locale={locale} />
+      <WhatsAppButton locale={locale} />
     </>
   );
 }
