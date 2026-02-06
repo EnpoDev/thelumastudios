@@ -27,7 +27,6 @@ export default function Header({ locale = 'en' }) {
 
   const navLinks = [
     { label: locale === 'tr' ? 'Uzmanlık' : 'Expertise', href: '#expertise' },
-    { label: locale === 'tr' ? 'Demolar' : 'Demos', href: '#demos' },
     { label: locale === 'tr' ? 'Paketler' : 'Packages', href: '#packages' },
     { label: locale === 'tr' ? 'Kurallar' : 'Rules', href: '#rules' },
   ];

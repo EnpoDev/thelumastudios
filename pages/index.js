@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Hero from '../components/HeroSlider';
 import Expertise from '../components/Services';
-import LiveDemo from '../components/TechStack';
 import Packages from '../components/About';
 import Rules from '../components/Rules';
 import Contact from '../components/Contact';
@@ -67,7 +66,6 @@ export default function Home({ locale: initialLocale }) {
       <main className="min-h-screen bg-[#0a0a0a]">
         <Hero locale={locale} />
         <Expertise locale={locale} />
-        <LiveDemo locale={locale} />
         <Packages locale={locale} />
         <Rules locale={locale} />
         <Contact locale={locale} />

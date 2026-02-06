@@ -33,7 +33,7 @@ export default function Footer({ locale = 'en' }) {
       tagline: "Fullstack Web Development Studio",
       email: "hello@lumastudios.com",
       rights: "All rights reserved",
-      sections: ["Expertise", "Demos", "Packages", "Rules", "Contact"],
+      sections: ["Expertise", "Packages", "Rules", "Contact"],
       contactTitle: "Contact Information",
       legalLinks: {
         privacy: "Privacy Policy",
@@ -45,7 +45,7 @@ export default function Footer({ locale = 'en' }) {
       tagline: "Fullstack Web Geliştirme Stüdyosu",
       email: "hello@lumastudios.com",
       rights: "Tüm hakları saklıdır",
-      sections: ["Uzmanlık", "Demolar", "Paketler", "Kurallar", "İletişim"],
+      sections: ["Uzmanlık", "Paketler", "Kurallar", "İletişim"],
       contactTitle: "İletişim Bilgileri",
       legalLinks: {
         privacy: "Gizlilik Politikası",
@@ -56,7 +56,7 @@ export default function Footer({ locale = 'en' }) {
   };
 
   const text = content[locale];
-  const sectionIds = ["expertise", "demos", "packages", "rules", "contact"];
+  const sectionIds = ["expertise", "packages", "rules", "contact"];
 
   return (
     <footer className="relative bg-cyber-darker text-white py-16 overflow-hidden">
