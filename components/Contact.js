@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, CheckCircle, AlertCircle, Shield, User, MapPin, Mail, Phone } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Shield, User, MapPin, Mail, Phone, Sparkles } from 'lucide-react';
 
 export default function Contact({ locale = 'en' }) {
   const [formData, setFormData] = useState({
@@ -167,19 +167,54 @@ export default function Contact({ locale = 'en' }) {
     }
   };
 
+  const inputClasses = `
+    w-full px-4 py-3 rounded-lg
+    bg-cyber-card/50 backdrop-blur-sm
+    border border-white/10
+    text-white placeholder-gray-500
+    focus:border-neon-cyan/50 focus:outline-none focus:ring-1 focus:ring-neon-cyan/20
+    focus:shadow-[0_0_20px_rgba(0,255,255,0.1)]
+    transition-all duration-300
+  `;
+
+  const selectClasses = `
+    w-full px-4 py-3 rounded-lg
+    bg-cyber-card/50 backdrop-blur-sm
+    border border-white/10
+    text-white
+    focus:border-neon-cyan/50 focus:outline-none focus:ring-1 focus:ring-neon-cyan/20
+    transition-all duration-300
+    appearance-none cursor-pointer
+  `;
+
   return (
-    <section id="contact" className="py-24 bg-[#0a0a0a] relative">
-      <div className="container mx-auto px-4" ref={ref}>
+    <section id="contact" className="py-24 bg-cyber-dark relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 cyber-grid opacity-20" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-neon-pink/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10" ref={ref}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {text.title}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={inView ? { scale: 1 } : {}}
+            transition={{ type: 'spring', delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-pink/10 border border-neon-pink/20 mb-6"
+          >
+            <Sparkles className="w-4 h-4 text-neon-pink" />
+            <span className="text-sm text-neon-pink">Request Demo</span>
+          </motion.div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <span className="neon-text">{text.title}</span>
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
             {text.subtitle}
           </p>
         </motion.div>
@@ -191,29 +226,31 @@ export default function Contact({ locale = 'en' }) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-xl mx-auto mb-12"
         >
-          <div className="border border-white/10 p-6">
+          <div className="rounded-xl bg-cyber-card/50 backdrop-blur-sm border border-neon-cyan/10 p-6">
             <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <User className="w-5 h-5" />
+              <span className="w-8 h-8 rounded-lg bg-neon-cyan/10 flex items-center justify-center">
+                <User className="w-4 h-4 text-neon-cyan" />
+              </span>
               {text.contactInfoTitle}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="flex items-start gap-3">
-                <User className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                <User className="w-4 h-4 text-neon-cyan mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400">{legalContact.name}</span>
               </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                <MapPin className="w-4 h-4 text-neon-pink mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400">{legalContact.address}</span>
               </div>
-              <div className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
-                <a href={`mailto:${legalContact.email}`} className="text-gray-400 hover:text-white transition-colors">
+              <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group">
+                <Mail className="w-4 h-4 text-neon-purple mt-0.5 flex-shrink-0" />
+                <a href={`mailto:${legalContact.email}`} className="text-gray-400 group-hover:text-neon-purple transition-colors">
                   {legalContact.email}
                 </a>
               </div>
-              <div className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
-                <a href={`tel:${legalContact.phone.replace(/\s/g, '')}`} className="text-gray-400 hover:text-white transition-colors">
+              <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group">
+                <Phone className="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" />
+                <a href={`tel:${legalContact.phone.replace(/\s/g, '')}`} className="text-gray-400 group-hover:text-neon-green transition-colors">
                   {legalContact.phone}
                 </a>
               </div>
@@ -221,13 +258,14 @@ export default function Contact({ locale = 'en' }) {
           </div>
         </motion.div>
 
+        {/* Form */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name & Email & Phone */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -240,7 +278,7 @@ export default function Contact({ locale = 'en' }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all"
+                  className={inputClasses}
                 />
               </div>
               <div>
@@ -253,7 +291,7 @@ export default function Contact({ locale = 'en' }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all"
+                  className={inputClasses}
                 />
               </div>
               <div>
@@ -266,7 +304,7 @@ export default function Contact({ locale = 'en' }) {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all"
+                  className={inputClasses}
                 />
               </div>
             </div>
@@ -276,19 +314,27 @@ export default function Contact({ locale = 'en' }) {
               <label className="block text-gray-400 text-sm mb-2">
                 {text.fields.projectType} *
               </label>
-              <select
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all appearance-none cursor-pointer"
-              >
-                {text.projectTypes.map((type) => (
-                  <option key={type.value} value={type.value} className="bg-[#0a0a0a]">
-                    {type.label}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  required
+                  className={selectClasses}
+                  style={{ backgroundColor: 'rgba(26, 26, 46, 0.5)' }}
+                >
+                  {text.projectTypes.map((type) => (
+                    <option key={type.value} value={type.value} style={{ backgroundColor: '#1a1a2e' }}>
+                      {type.label}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Budget - Required */}
@@ -296,19 +342,27 @@ export default function Contact({ locale = 'en' }) {
               <label className="block text-gray-400 text-sm mb-2">
                 {text.fields.budget} *
               </label>
-              <select
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all appearance-none cursor-pointer"
-              >
-                {text.budgets.map((budget) => (
-                  <option key={budget.value} value={budget.value} className="bg-[#0a0a0a]">
-                    {budget.label}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  required
+                  className={selectClasses}
+                  style={{ backgroundColor: 'rgba(26, 26, 46, 0.5)' }}
+                >
+                  {text.budgets.map((budget) => (
+                    <option key={budget.value} value={budget.value} style={{ backgroundColor: '#1a1a2e' }}>
+                      {budget.label}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Description */}
@@ -321,12 +375,12 @@ export default function Contact({ locale = 'en' }) {
                 value={formData.description}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-3 bg-transparent border border-white/10 text-white focus:border-white/30 focus:outline-none transition-all resize-none"
+                className={`${inputClasses} resize-none`}
               />
             </div>
 
             {/* KVKK/GDPR Consent Checkbox */}
-            <div className="border border-white/10 p-4 rounded">
+            <div className="rounded-xl bg-cyber-card/30 border border-white/5 p-4">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <div className="relative flex-shrink-0 mt-0.5">
                   <input
@@ -335,13 +389,13 @@ export default function Contact({ locale = 'en' }) {
                     onChange={(e) => setConsentGiven(e.target.checked)}
                     className="sr-only"
                   />
-                  <div className={`w-5 h-5 border-2 rounded transition-all ${
+                  <div className={`w-5 h-5 rounded border-2 transition-all ${
                     consentGiven
-                      ? 'bg-white border-white'
-                      : 'border-white/30 group-hover:border-white/50'
+                      ? 'bg-neon-cyan border-neon-cyan shadow-neon-cyan-sm'
+                      : 'border-white/30 group-hover:border-neon-cyan/50'
                   }`}>
                     {consentGiven && (
-                      <svg className="w-full h-full text-black p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-full h-full text-cyber-dark p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     )}
@@ -349,7 +403,7 @@ export default function Contact({ locale = 'en' }) {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 text-white text-sm font-medium">
-                    <Shield className="w-4 h-4 text-gray-400" />
+                    <Shield className="w-4 h-4 text-neon-cyan" />
                     {text.consent.label} *
                   </div>
                   <p className="text-gray-500 text-xs mt-1">
@@ -361,29 +415,43 @@ export default function Contact({ locale = 'en' }) {
 
             {/* Status message */}
             {status.message && (
-              <div className={`flex items-center gap-3 p-4 border ${
-                status.type === 'success'
-                  ? 'border-green-500/30 text-green-400'
-                  : 'border-red-500/30 text-red-400'
-              }`}>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`flex items-center gap-3 p-4 rounded-lg border ${
+                  status.type === 'success'
+                    ? 'border-neon-green/30 bg-neon-green/10 text-neon-green'
+                    : 'border-red-500/30 bg-red-500/10 text-red-400'
+                }`}
+              >
                 {status.type === 'success' ? (
                   <CheckCircle className="w-5 h-5 flex-shrink-0" />
                 ) : (
                   <AlertCircle className="w-5 h-5 flex-shrink-0" />
                 )}
                 <span className="text-sm">{status.message}</span>
-              </div>
+              </motion.div>
             )}
 
             {/* Submit */}
-            <button
+            <motion.button
               type="submit"
               disabled={isSubmitting || !consentGiven}
-              className="w-full py-4 bg-white text-black font-medium hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              className={`
+                w-full py-4 rounded-lg font-medium
+                flex items-center justify-center gap-3
+                transition-all duration-300
+                ${consentGiven && !isSubmitting
+                  ? 'bg-gradient-to-r from-neon-cyan to-neon-pink text-cyber-dark hover:shadow-neon-glow'
+                  : 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                }
+              `}
             >
               {isSubmitting ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-cyber-dark/30 border-t-cyber-dark rounded-full animate-spin" />
                   {text.sending}
                 </>
               ) : (
@@ -392,11 +460,11 @@ export default function Contact({ locale = 'en' }) {
                   {text.submit}
                 </>
               )}
-            </button>
+            </motion.button>
           </form>
 
           {/* Note */}
-          <p className="text-center text-gray-600 text-sm mt-6">
+          <p className="text-center text-gray-500 text-sm mt-6">
             {text.note}
           </p>
         </motion.div>

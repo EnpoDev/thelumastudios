@@ -15,8 +15,21 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         
-        {/* Theme color for mobile browsers */}
-        <meta name="theme-color" content="#7c3aed" />
+        {/* Theme color for mobile browsers - Neon Cyan */}
+        <meta name="theme-color" content="#00FFFF" />
+
+        {/* Google Ads Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17861187514" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17861187514');
+            `,
+          }}
+        />
         
         {/* Structured Data for SEO - Organization */}
         <script
