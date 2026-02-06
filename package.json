@@ -21,7 +21,7 @@
     "better-sqlite3": "^11.7.0",
     "cookie": "^0.7.2",
     "dotenv": "^17.2.3",
-    "eslint-config-next": "^15.4.8",
+    "eslint-config-next": "^16.1.1",
     "formidable": "^3.5.1",
     "framer-motion": "^12.23.26",
     "jsonwebtoken": "^9.0.3",
