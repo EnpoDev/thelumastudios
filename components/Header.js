@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Menu, X, Globe, ChevronRight } from 'lucide-react';
 
 export default function Header({ locale = 'en' }) {
@@ -109,112 +109,72 @@ export default function Header({ locale = 'en' }) {
             </div>
 
             {/* Mobile Menu Button */}
-            <motion.button
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden relative w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/5 transition-colors"
-              whileTap={{ scale: 0.95 }}
+              aria-label="Toggle menu"
             >
-              <AnimatePresence mode="wait">
-                {isMobileMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X size={22} className="text-neon-cyan" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu size={22} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {isMobileMenuOpen ? (
+                <X size={22} className="text-neon-cyan" />
+              ) : (
+                <Menu size={22} />
+              )}
+            </button>
           </div>
         </div>
       </motion.header>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-cyber-dark/95 backdrop-blur-xl z-40 md:hidden"
-            />
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 bg-cyber-dark/95 backdrop-blur-xl z-40 md:hidden animate-fade-in"
+          />
 
-            {/* Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-16 left-0 right-0 bg-cyber-dark/98 backdrop-blur-xl border-b border-neon-cyan/10 z-50 md:hidden"
-            >
-              <nav className="container mx-auto px-4 py-6">
-                {/* Nav Links */}
-                <div className="space-y-1">
-                  {navLinks.map((link, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center justify-between px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all group"
-                      >
-                        <span>{link.label}</span>
-                        <ChevronRight className="w-4 h-4 text-neon-cyan/50 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
-                      </Link>
-                    </motion.div>
-                  ))}
+          {/* Menu */}
+          <div className="fixed top-16 left-0 right-0 bg-cyber-dark/98 backdrop-blur-xl border-b border-neon-cyan/10 z-50 md:hidden animate-slide-down">
+            <nav className="container mx-auto px-4 py-6">
+              {/* Nav Links */}
+              <div className="space-y-1">
+                {navLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all group"
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight className="w-4 h-4 text-neon-cyan/50 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
+                  </Link>
+                ))}
+              </div>
+
+              {/* Bottom section */}
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => changeLanguage(locale === 'en' ? 'tr' : 'en')}
+                    className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-neon-cyan transition-colors"
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span>{locale === 'en' ? 'Türkçe' : 'English'}</span>
+                  </button>
+
+                  <Link
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="px-5 py-2.5 bg-gradient-to-r from-neon-cyan to-neon-pink text-cyber-dark font-medium rounded-lg hover:shadow-neon-glow transition-shadow"
+                  >
+                    {locale === 'tr' ? 'Proje Başlat' : 'Start Project'}
+                  </Link>
                 </div>
-
-                {/* Bottom section */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="mt-6 pt-6 border-t border-white/10"
-                >
-                  <div className="flex items-center justify-between">
-                    <button
-                      onClick={() => changeLanguage(locale === 'en' ? 'tr' : 'en')}
-                      className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-neon-cyan transition-colors"
-                    >
-                      <Globe className="w-4 h-4" />
-                      <span>{locale === 'en' ? 'Türkçe' : 'English'}</span>
-                    </button>
-
-                    <Link
-                      href="#contact"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-5 py-2.5 bg-gradient-to-r from-neon-cyan to-neon-pink text-cyber-dark font-medium rounded-lg hover:shadow-neon-glow transition-shadow"
-                    >
-                      {locale === 'tr' ? 'Proje Başlat' : 'Start Project'}
-                    </Link>
-                  </div>
-                </motion.div>
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
     </>
   );
 }
